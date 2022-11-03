@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/Banner'
+import Cards from '../components/Cards'
 import ExploreCard from '../components/ExploreCard'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 
-export default function Home({exploreData} ) {
+export default function Home({exploreData, cardsData} ) {
   return (
     <div className="">
       <Head>
@@ -34,8 +36,19 @@ export default function Home({exploreData} ) {
             ))}
           </div>
         </section>
+
+        <section>
+          <h2 className="text-4xl font-semibold py-8 ">Live Anywhere </h2>
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3">
+            {cardsData?.map(({img, title}) => (
+              <Cards key={img} img={img} title={title}/>
+              ))
+            }
+          </div>
+        </section>
       </main>
       
+      <Footer />
     </div>
   )
 }
@@ -44,9 +57,13 @@ export async function getStaticProps(){
   const exploreData = await fetch("https://www.jsonkeeper.com/b/4G1G")
                             .then((response) => response.json());
   
+  const cardsData = await fetch("https://www.jsonkeeper.com/b/99D5")
+                          .then((response) => response.json())
+
   return {
     props: {
-      exploreData
+      exploreData,
+      cardsData
     }
   }
 
