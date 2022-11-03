@@ -10,7 +10,7 @@ function Header() {
     return (
         <header className="sticky top-0 z-20 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
             <div className="relative flex h-10 items-center cursor-pointer">
-                <Image layout="fill" objectFit="contain" objectPosition="left" />
+                <Image layout="fill" objectFit="contain" objectPosition="left" alt="image" />
             </div>
 
             <div className="flex items-center md:border-2 rounded-full p-2">

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Banner from '../components/Banner'
 import Cards from '../components/Cards'
 import ExploreCard from '../components/ExploreCard'
