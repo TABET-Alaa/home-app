@@ -9,12 +9,14 @@ import {    SearchIcon,
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import { useRouter } from 'next/router';
 
 function Header() {
     const [searchInput, setSearchInput] = useState('');
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [numberOfGuests, setNumberOfGuests] = useState(1)
+    const router = useRouter();
 
     const selectionRange = {
         startDate: startDate,
@@ -35,7 +37,10 @@ function Header() {
 
     return (
         <header className="sticky top-0 z-20 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
-            <div className="relative flex h-10 items-center cursor-pointer">
+            <div 
+                className="relative flex h-10 items-center cursor-pointer"
+                onClick={() => router.push("/")}
+            >
                 <Image layout="fill" objectFit="contain" objectPosition="left" alt="image" />
             </div>
 
