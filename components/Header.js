@@ -35,6 +35,18 @@ function Header() {
         setSearchInput('');
     }
 
+    const search = () => {
+        router.push({
+            pathname: '/search',
+            query: {
+                location: searchInput,
+                startDate: startDate.toISOString(),
+                endDate: endDate.toISOString(),
+                numberOfGuests
+            }
+        })
+    }
+
     return (
         <header className="sticky top-0 z-20 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
             <div 
@@ -80,7 +92,12 @@ function Header() {
                     </div>
                     <div className="flex">
                         <button className="flex-grow text-gray-500" onClick={resetInput}>Cancel</button>
-                        <button className="flex-grow text-gray-400">Search</button>
+                        <button 
+                            className="flex-grow text-gray-400"
+                            onClick={search}
+                        >
+                            Search
+                        </button>
                     </div>
                 </div> 
             }
