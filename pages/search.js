@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import InfoCard from '../components/InfoCard';
 
 
-function search({ result }) {
+function Search({ result }) {
 
     const router = useRouter();
     const { location, startDate, endDate, numberOfGuests } = router.query;
