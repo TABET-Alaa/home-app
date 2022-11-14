@@ -2,18 +2,20 @@ import { useRouter } from 'next/router';
 import React from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { format } from "date-fns";$
+import { format } from "date-fns";
+import InfoCard from '../components/InfoCard';
 
-function search({result}) {
+
+function search({ result }) {
 
     const router = useRouter();
-    const {location, startDate , endDate, numberOfGuests } = router.query;
-    const formatedStartDate = format(new Date(startDate),"dd MMMM yy");
-    const formatedEndDate = format(new Date(endDate),"dd MMMM yy");
+    const { location, startDate, endDate, numberOfGuests } = router.query;
+    const formatedStartDate = format(new Date(startDate), "dd MMMM yy");
+    const formatedEndDate = format(new Date(endDate), "dd MMMM yy");
     const range = `${formatedStartDate} -- ${formatedEndDate} `
     return (
         <div>
-            <Header placeholder={`${location} | ${range} | ${numberOfGuests} guests`}/>
+            <Header placeholder={`${location} | ${range} | ${numberOfGuests} guests`} />
 
             <main className="flex">
                 <section className="flex-grow pt-14 px-6">
@@ -22,13 +24,28 @@ function search({result}) {
 
                     <div className="hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
                         <p className="button">
-                            Cancelation flexibility 
+                            Cancelation flexibility
                         </p>
                         <p className="button">Type of Place</p>
                         <p className="button">Type of Place</p>
                         <p className="button">Price</p>
                         <p className="button">Rooms And Beds</p>
                         <p className="button">More filters</p>
+                    </div>
+
+                    <div className="flex flex-col">
+                        {result.map(({ img, location, title, description, star, price, total }) => (
+                            <InfoCard
+                                key={img}
+                                img={img}
+                                location={location}
+                                title={title}
+                                description={description}
+                                star={star}
+                                price={price}
+                                total={total}
+                            />
+                        ))}
                     </div>
                 </section>
             </main>
@@ -42,7 +59,7 @@ export default search
 
 export async function getServerSideProps() {
     const result = await fetch("https://www.jsonkeeper.com/b/5NPS")
-                            .then(res => res.json());
+        .then(res => res.json());
 
     return {
         props: {
