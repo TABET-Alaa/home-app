@@ -20,7 +20,7 @@ function Search({ result }) {
             <main className="flex">
                 <section className="flex-grow pt-14 px-6">
                     <p className="text-xs">+50 resultat - {range}  - pour {numberOfGuests} nombre de personne</p>
-                    <h1 className="text-3xl font-semibold mt-2 mb-6">Stays in {location}</h1>
+                    <h1 className="text-3xl font-semibold mt-2 mb-6">Resultat dans  {location}</h1>
 
                     <div className="hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
                         <p className="button">filtre</p>
